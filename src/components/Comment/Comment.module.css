@@ -1,0 +1,18 @@
+.item {
+    background-color: chocolate;
+    padding: 5px;
+    max-width: 450px;
+    margin: 10px auto;
+    border: 2px black solid;
+}
+.itemHeader {
+    background-color: crimson;
+    margin: 5px;
+    padding: 5px;
+}
+.nestedItem {
+    max-width: 400px;
+    padding: 5px;
+    margin: 5px auto;
+    background-color: grey;
+}
