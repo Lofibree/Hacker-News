@@ -1,0 +1,10 @@
+.commentsCount {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 20px;
+}
+.commentsCount svg {
+    font-size: 20px;
+    margin-right: 5px;
+}

@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import Main from './pages/Main';
+import Main from './pages/Main/Main';
 import { Route, Router, Routes } from 'react-router-dom';
-import ParticularNew from './components/ParticularNew/ParticularNew';
+import FullNew from './components/FullNew/FullNew';
 import { Container } from '@mui/material';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <Container maxWidth='lg'>
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/news/:id' element={<ParticularNew />} />
+        <Route path='/news/:id' element={<FullNew />} />
       </Routes>
     </Container>
     // </div>
