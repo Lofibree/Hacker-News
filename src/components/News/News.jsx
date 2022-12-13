@@ -2,6 +2,9 @@ import React from 'react';
 import main from '../../store/main';
 import {observer} from 'mobx-react-lite'
 import NewsOneEl from '../NewOneEl/NewsOneEl';
+import { Grid } from '@mui/material';
+
+
 
 const News = observer(() => {
 
@@ -10,7 +13,11 @@ const News = observer(() => {
 
     return (
         <div>
-            {newsEl}
+            <Grid container spacing={4} >
+                <Grid xs={12} item>
+                    {newsEl}
+                </Grid>
+            </Grid>
         </div>
     );
 })

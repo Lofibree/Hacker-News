@@ -1,7 +1,51 @@
 .item {
-    background-color: blueviolet;
-    margin: 15px auto;
-    padding: 5px;
-    border-radius: 10px;
-    max-width: 500px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.item:hover {
+    border: 1px solid #4361ee;
+    box-shadow: 0 0 0 1px #4361ee;
+}
+
+.wrapper {
+    padding: 10px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.newsDetails {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.newsDetails li {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 20px;
+    opacity: 0.5;
+}
+
+.newsDetails svg {
+    font-size: 18px;
+    margin-right: 5px;
 }
