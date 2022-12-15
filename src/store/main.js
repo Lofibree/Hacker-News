@@ -9,6 +9,7 @@ class Main {
     nestedComments = {}
     isLoadingNews = false
     isLoadingComments = false
+    isLoadingNested = false
     tempArr = []
 
     constructor() {
@@ -89,13 +90,14 @@ class Main {
     }
     fetchNestedComments(comment) {
         this.nestedComments[comment.id] = []
-
+        this.isLoadingNested = true
         comment.kids.map(async (id) => {
             try {
                 const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
                 const json = await response.json()
                 this.nestedComments[comment.id] = [...this.nestedComments[comment.id], json]
                 // alert(comment.id in this.nestedComments)
+                this.isLoadingNested = false
             } catch (err) {
                 console.warn(err)
             }
