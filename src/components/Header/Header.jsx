@@ -64,7 +64,7 @@ const Header = () => {
                     </IconButton>
                     {/* <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}> */}
                         <Typography variant='h6' sx={{ margin: 1 }}>Hacker News</Typography>
-                        <Button href='https://news.ycombinator.com/' variant="contained" endIcon={<OpenInNewIcon />} size='medium' color='secondary' target='_blank' sx={{ margin: 1, fontSize: '17px' }}>Official cite</Button> 
+                        <Button href='https://news.ycombinator.com/' variant="contained" endIcon={<OpenInNewIcon />} size='medium' color='secondary' target='_blank' sx={{ margin: 1, fontSize: '17px' }}>Official site</Button> 
                     {/* </Box> */}
                 </Container>
             </AppBar>

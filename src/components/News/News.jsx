@@ -12,7 +12,7 @@ const News = observer((props) => {
             <Grid container spacing={4}>
                 <Grid xs={12} item>
                     {props.isLoadingNews
-                        ? 'sdssffssf'
+                        ? [...Array(10)].map(n => <Skeleton variant='rectangular'  />)
                         : props.news.map(n => <NewItem item={n} key={n.id} isFullNew={false} />)
                     }
                 </Grid>

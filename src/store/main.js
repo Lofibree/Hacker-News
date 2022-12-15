@@ -37,11 +37,19 @@ class Main {
                             .then(json => {
                                 json.time = this.convertDate(json.time).toLocaleString()
                                 this.news.push(json)
+                                if (this.news.length >= 75) {
+                                    this.isLoadingNews = false
+                                }
                             })
                     })
                 })
                 .then(() => {
-                    this.isLoadingNews = false
+                    if (this.news.length >= 75) {
+                        this.isLoadingNews = false
+                    }
+                }).catch((err) => {
+                    console.warn(err)
+                    // alert(err)
                 })
         } catch (err) {
             console.warn(err)

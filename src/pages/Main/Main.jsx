@@ -16,10 +16,29 @@ const Main = observer(() => {
 
     useEffect(() => {
         main.fetchNews()
+        setInterval(() => {
+            if (location.pathname === '/') {
+                main.fetchNews()
+            }
+        }, 60000)
     }, [])
 
     const handleReload = () => {
         main.fetchNews()
+    }
+
+    const debounce = (f, ms) => {
+        let isCooldown = false;
+
+        return function () {
+            if (isCooldown) return;
+
+            f.apply(this, arguments);
+
+            isCooldown = true;
+
+            setTimeout(() => isCooldown = false, ms);
+        };
     }
 
     // setTimeout(() => {
@@ -41,7 +60,7 @@ const Main = observer(() => {
                         Обновить
                     </Button>
                 </div>
-                {main.isLoadingNews
+                {main.news.length <= 70
                     ? <Preloader />
                     : <News news={main.news} isLoadingNews={main.isLoadingNews} />
                 }
