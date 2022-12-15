@@ -70,7 +70,7 @@ const Comment = observer(({ comment, index }) => {
                             </>
                             : ''
                         }
-                        {main.isLoadingNested
+                        {main.isLoadingNested && main.nestedComments[comment.id]
                             ? <>
                                 {[...Array(2)].map(() => {
                                     return (
