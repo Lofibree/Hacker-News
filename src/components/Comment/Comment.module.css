@@ -1,9 +1,9 @@
 .item {
-    background-color: chocolate;
+    /* background-color: chocolate; */
     padding: 5px;
     max-width: 450px;
     margin: 10px auto;
-    border: 2px black solid;
+    /* border: 2px black solid; */
 }
 .itemHeader {
     background-color: crimson;
@@ -15,4 +15,13 @@
     padding: 5px;
     margin: 5px auto;
     background-color: grey;
+}
+.nestedBtn:hover {
+    cursor: pointer;
+    /* background-color: grey; */
+}
+@media screen and (max-width: 600px) {
+.nestedItem {
+    width: 500px;
+}
 }

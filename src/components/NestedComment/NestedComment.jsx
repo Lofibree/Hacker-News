@@ -1,12 +1,24 @@
 import React from 'react';
-import styles from './NestedComments.module.css'
+import { ListItemText, Skeleton } from '@mui/material';
+import { Container } from '@mui/system';
 
-const NestedComment = ({nestedComments}) => {
+const NestedComment = ({ item, isLoadingNested }) => {
     return (
-        <div className={styles.nestedItem}>
-            <h3>{nestedComments.by}</h3>
-            <div>{nestedComments.text}</div>
-        </div>
+        <Container maxWidth='sm' sx={{borderLeft: '2px black solid'}}>
+            {isLoadingNested
+                ? <div style={{ display: "flex", flexDirection: "column" }}>
+                    <Skeleton variant='text' height={25} width={120} />
+                    <Skeleton variant='text' height={18} width={230} />
+                </div>
+                : <>
+                <ListItemText
+                    primary={item ? item.by : 'commentAuthor'}
+                    primaryTypographyProps={{ style: { wordBreak: 'break-word', width: '', fontSize: '18px', fontWeight: '600' } }}
+                />
+                <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+                </>
+            }
+        </Container>
     );
 };
 

@@ -1,26 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import main from '../../store/main';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import styles from './Comments.module.css'
 import Comment from '../Comment/Comment';
+import { observer } from 'mobx-react-lite';
+import { Grid, Paper, Skeleton, Typography } from '@mui/material';
+import { Button } from '@mui/material';
+import CachedIcon from '@mui/icons-material/Cached';
+import { Box } from '@mui/material';
+import { Container } from '@mui/system';
 
-const Comments = () => {
 
-    const commentsEl = main.comments.map(c => <Comment comment={c} />)
+const Comments = observer(({ commentsCount }) => {
 
+    const [isLoading, setIsLoading] = useState(false)
+    const commentsEl = main.comments.map((c, index) => <Comment comment={c} index={index} />)
+    const handleReload = () => {
+        main.fetchComments()
+    }
     return (
-        <div>
-            <div style={{ display: 'flex' }}>
-                <h2>Комментарии</h2>
-                <div className={styles.commentsCount}>
-                    <CommentIcon />
-                    <span>{commentsEl.length}</span>
+        <Paper sx={{ marginBottom: 20, paddingBottom: 15 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h5" sx={{ padding: 5 }}>
+                    Комментарии
+                    <span className={styles.commentsCount}>
+                        <CommentIcon />
+                        <span>{commentsCount ? commentsCount : '0'}</span>
+                    </span>
+                </Typography>
+                <div className={styles.btn}>
+                    <Button
+                        size='large'
+                        endIcon={<CachedIcon />}
+                        variant='outlined'
+                        onClick={handleReload}
+                    >
+                        Обновить
+                    </Button>
                 </div>
+            </Box>
+            <div className={styles.commentsBox}>
+                {main.isLoadingComments
+                    ? <Skeleton variant='rounded' width={550} height={400} className={styles.skeleton}/>
+                    : <>{commentsEl.length !== 0
+                        ? commentsEl
+                        : <Typography variant="h6" sx={{ padding: 5, marginLeft: 5 }}>Пока нет комментариев</Typography>
+                    }</>
+                }
             </div>
-            {/* <div>{partNew.descendants}</div> */}
-            <div>{commentsEl}</div>
-        </div>
+        </Paper>
     );
-};
+})
 
 export default Comments;

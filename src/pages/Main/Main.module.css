@@ -1,5 +1,8 @@
 .btn {
     margin: 20px auto;
     display: flex;
-    align-items: center;
+    align-content: flex-start;
+}
+.btn button {
+    margin-left: auto;
 }

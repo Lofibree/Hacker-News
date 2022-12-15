@@ -1,10 +1,36 @@
+
 .commentsCount {
     display: inline-flex;
     align-items: center;
     font-size: 18px;
-    margin-left: 20px;
+    margin-right: 20px;
+    margin-left: 5px;
+    opacity: 0.5;
 }
+
 .commentsCount svg {
     font-size: 20px;
     margin-right: 5px;
+}
+.btn {
+    margin: auto;
+    margin-right: 10px;
+    display: flex;
+    align-content: flex-start;
+    height: fit-content;
+    width: fit-content;
+}
+.btn button {
+    margin-left: auto;
+}
+.skeleton {
+    margin: 0 auto;
+}
+@media screen and (max-width: 500px) {
+    .commentsBox {
+        width: 400px;
+    }  
+    .skeleton {
+        width: 300px;
+    }  
 }

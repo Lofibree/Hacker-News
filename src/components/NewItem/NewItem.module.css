@@ -18,11 +18,17 @@
 .title {
     font-size: 24px;
     margin: 5px auto;
-    margin-left: 25px;
+    margin-left: 35px;
+    display: flex;
+    align-items: center;
 }
 .title a {
     text-decoration: none;
     color: #000;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 5px;
 }
 .title a:hover {
     color: #4361ee;
@@ -30,8 +36,14 @@
 .info {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-
+.info a {
+    text-decoration: none;
+}
+.info a:hover {
+    color: red;
+}
 .details {
     display: flex;
     flex-direction: column;
@@ -64,4 +76,7 @@
 .additional {
     font-size: 12px;
     opacity: 0.6;
+}
+.externalLink:hover {
+    cursor: pointer;
 }
