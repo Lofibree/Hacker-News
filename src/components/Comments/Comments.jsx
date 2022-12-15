@@ -4,11 +4,10 @@ import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import styles from './Comments.module.css'
 import Comment from '../Comment/Comment';
 import { observer } from 'mobx-react-lite';
-import { Grid, Paper, Skeleton, Typography } from '@mui/material';
+import { Paper, Skeleton, Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import CachedIcon from '@mui/icons-material/Cached';
 import { Box } from '@mui/material';
-import { Container } from '@mui/system';
 
 
 const Comments = observer(({ commentsCount }) => {

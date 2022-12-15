@@ -6,6 +6,7 @@ class Main {
     news = []
     particularNew = {}
     comments = []
+    nestedComments = {}
     isLoadingNews = false
     isLoadingComments = false
     tempArr = []
@@ -85,6 +86,20 @@ class Main {
                     })
             })
         }
+    }
+    fetchNestedComments(comment) {
+        this.nestedComments[comment.id] = []
+
+        comment.kids.map(async (id) => {
+            try {
+                const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+                const json = await response.json()
+                this.nestedComments[comment.id] = [...this.nestedComments[comment.id], json]
+                // alert(comment.id in this.nestedComments)
+            } catch (err) {
+                console.warn(err)
+            }
+        })
     }
 }
 
