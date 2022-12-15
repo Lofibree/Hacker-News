@@ -28,6 +28,7 @@ class Main {
                 .then(response => response.json())
                 .then(json => {
                     this.newsIds = [...json]
+                    const p = []
                     this.newsIds.splice(0, 80).map(newsId => {
                         fetch(`https://hacker-news.firebaseio.com/v0/item/${newsId}.json?print=pretty`)
                             .then(response => response.json())

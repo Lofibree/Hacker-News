@@ -5,6 +5,7 @@ import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { observer } from 'mobx-react-lite';
+import { Paper } from '@mui/material';
 
 
 const NewItem = observer(({ item, isFullNew }) => {
@@ -14,20 +15,18 @@ const NewItem = observer(({ item, isFullNew }) => {
             <div className={styles.wrapper}>
                 <div className={styles.info}>
                     <div style={{ display: 'flex' }}>
-                        <ul className={styles.newsDetails}>
-                            <li>
-                                <StarIcon />
-                                <span>{item.length !== 0 ? item.score : 'score'}</span>
-                            </li>
-                        </ul>
+                        <span className={styles.starIconBox}>
+                            <StarIcon />
+                            <span>{item.length !== 0 ? item.score : 'score'}</span>
+                        </span>
                         <div className={styles.details}>
                             <div className={styles.name}>{item && item.by ? item.by : 'author'}</div>
                             <div className={styles.additional}>Дата: {item && item.time ? item.time.split(',')[0] : 'time'}</div>
                             <div className={styles.additional}>Время: {item && item.time ? item.time.split(',')[1] : 'time'}</div>
                         </div>
                     </div>
-                    {item && item.url 
-                        ? <a href={item ? item.url : '#'} target="_blank" title='Перейти в источник новости' className={styles.externalLink}><ExitToAppIcon /></a>   
+                    {item && item.url
+                        ? <a href={item ? item.url : '#'} target="_blank" title='Перейти в источник новости' className={styles.externalLink}><ExitToAppIcon /></a>
                         : ''
                     }
                 </div>
@@ -37,13 +36,16 @@ const NewItem = observer(({ item, isFullNew }) => {
                     </NavLink>
                 </h3>
                 {isFullNew
-                    ? <p dangerouslySetInnerHTML={{__html: item.text}} style={{padding: '20px'}}></p>
-                    : <ul className={styles.newsDetails}>
-                        <li>
-                            <CommentIcon />
-                            <span>{item ? item.descendants : 'descendants'}</span>
-                        </li>
-                    </ul>
+                    ? <>
+                        {item.text
+                            ? <p dangerouslySetInnerHTML={{ __html: item.text }} style={{ padding: '20px' }}></p>
+                            : ''
+                        }
+                    </>
+                    : <div className={styles.commentIconBox}>
+                        <CommentIcon />
+                        <span>{item ? item.descendants : 'descendants'}</span>
+                    </div>
                 }
             </div>
         </div>

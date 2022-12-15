@@ -3,14 +3,13 @@
     display: inline-flex;
     align-items: center;
     font-size: 18px;
-    margin-right: 20px;
     margin-left: 5px;
     opacity: 0.5;
 }
 
 .commentsCount svg {
     font-size: 20px;
-    margin-right: 5px;
+    color: blue
 }
 .btn {
     margin: auto;

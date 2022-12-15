@@ -22,15 +22,15 @@ const Main = observer(() => {
         main.fetchNews()
     }
 
-    setTimeout(() => {
-        if (location.pathname === '/') {
-            main.fetchNews()
-        }
-    }, 60000)
+    // setTimeout(() => {
+    //     if (location.pathname === '/') {
+    //         main.fetchNews()
+    //     }
+    // }, 60000)
 
     return (
         <div>
-            <Container maxWidth='md'>
+            <Container maxWidth='md' sx={{minHeight: 1000}}>
                 <div className={styles.btn}>
                     <Button
                         size='large'

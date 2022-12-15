@@ -11,7 +11,6 @@ const News = observer((props) => {
         <div>
             <Grid container spacing={4}>
                 <Grid xs={12} item>
-
                     {props.isLoadingNews
                         ? 'sdssffssf'
                         : props.news.map(n => <NewItem item={n} key={n.id} isFullNew={false} />)

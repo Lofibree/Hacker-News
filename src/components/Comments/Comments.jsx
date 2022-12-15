@@ -13,7 +13,6 @@ import { Container } from '@mui/system';
 
 const Comments = observer(({ commentsCount }) => {
 
-    const [isLoading, setIsLoading] = useState(false)
     const commentsEl = main.comments.map((c, index) => <Comment comment={c} index={index} />)
     const handleReload = () => {
         main.fetchComments()
@@ -21,7 +20,7 @@ const Comments = observer(({ commentsCount }) => {
     return (
         <Paper sx={{ marginBottom: 20, paddingBottom: 15 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5" sx={{ padding: 5 }}>
+                <Typography variant="h5" sx={{ padding: 5, display: 'flex', alignItems: 'center' }}>
                     Комментарии
                     <span className={styles.commentsCount}>
                         <CommentIcon />
@@ -41,11 +40,13 @@ const Comments = observer(({ commentsCount }) => {
             </Box>
             <div className={styles.commentsBox}>
                 {main.isLoadingComments
-                    ? <Skeleton variant='rounded' width={550} height={400} className={styles.skeleton}/>
-                    : <>{commentsEl.length !== 0
-                        ? commentsEl
-                        : <Typography variant="h6" sx={{ padding: 5, marginLeft: 5 }}>Пока нет комментариев</Typography>
-                    }</>
+                    ? <Skeleton variant='rounded' sx={{ width: { sm: '500px', xs: '400px', md: '800px' }, height: {sm: '500px', xs: '400px', md: '800px'} }} className={styles.skeleton} />
+                    : <>
+                        {commentsEl.length !== 0
+                            ? commentsEl
+                            : <Typography variant="h6" sx={{ padding: 5, marginLeft: 5 }}>Пока нет комментариев</Typography>
+                        }
+                    </>
                 }
             </div>
         </Paper>
