@@ -1,32 +1,43 @@
-import React, { useEffect } from 'react';
-import { ListItemText, Skeleton } from '@mui/material';
+import React from 'react';
+import { Divider, ListItemText, Skeleton } from '@mui/material';
 import { Container } from '@mui/system';
+import { observer } from 'mobx-react-lite';
 
-const NestedComment = ({ item, isLoadingNested }) => {
+const NestedComment = observer(({ item, isLoadingNested }) => {
 
-    // useEffect(() => {
-
-    // }, [])
     return (
         <Container maxWidth='sm' sx={{ borderLeft: '2px black solid' }}>
-            {isLoadingNested
-                ? <div style={{ display: "flex", flexDirection: "column" }}>
-                    <Skeleton variant='text' height={25} width={120} />
-                    <Skeleton variant='text' height={18} width={230} />
-                </div>
-                : <>
-                    <ListItemText
-                        primary={item ? item.by : 'commentAuthor'}
-                        primaryTypographyProps={{ style: { wordBreak: 'break-word', width: '', fontSize: '18px', fontWeight: '600' } }}
-                    />
-                    {item && item.text 
-                    ? <div dangerouslySetInnerHTML={{ __html: item.text }}></div> 
+            <>
+                <ListItemText
+                    primary={item ? item.by : 'commentAuthor'}
+                    secondary={item ? item.time : 'time'}
+                    primaryTypographyProps={{ style: { wordBreak: 'break-word', width: '', fontSize: '18px', fontWeight: '600' } }}
+                />
+                {item && item.text
+                    ? <div dangerouslySetInnerHTML={{ __html: item.text }}></div>
                     : ''
+                }
+                <div>
+                    {item && item.kidsObj
+                        ? item.kidsObj.map(i =>
+                            <Container maxWidth='xs' sx={{ borderLeft: '2px black solid', marginBottom: 2 }}>
+                                <ListItemText
+                                    primary={i ? i.by : 'commentAuthor'}
+                                    secondary={i ? i.time : 'time'}
+                                    primaryTypographyProps={{ style: { wordBreak: 'break-word', width: '', fontSize: '18px', fontWeight: '600' } }}
+                                />
+                                {i && i.text
+                                    ? <div dangerouslySetInnerHTML={{ __html: i.text }}></div>
+                                    : ''
+                                }
+                            </Container>)
+                        : ''
                     }
-                </>
-            }
+                </div>
+                <Divider />
+            </>
         </Container>
     );
-};
+})
 
 export default NestedComment;

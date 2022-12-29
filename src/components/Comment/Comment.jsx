@@ -16,7 +16,6 @@ import main from '../../store/main';
 
 const Comment = observer(({ comment, index }) => {
 
-    const [isLoadingNested, setIsLoadingNested] = useState(false)
     const [open, setOpen] = useState(true)
 
     const handleClick = () => {
@@ -28,10 +27,9 @@ const Comment = observer(({ comment, index }) => {
             <>
                 {n
                     ? <ListItem>
-                        <NestedComment isLoadingNested={isLoadingNested} item={n} />
+                        <NestedComment item={n} />
                     </ListItem>
                     : ''
-                    // <Skeleton variant='text' />
                 }
             </>
         )
@@ -55,38 +53,36 @@ const Comment = observer(({ comment, index }) => {
                             ? <>
                                 {main.nestedComments[comment.id] && main.nestedComments[comment.id].length !== 0
                                     ? <>
-                                        <Typography onClick={handleClick} className={styles.nestedBtn} sx={{ marginLeft: 3.3, marginTop: 1, color: 'blue', display: 'flex' }}>
+                                        <Typography
+                                            onClick={handleClick}
+                                            className={styles.nestedBtn}
+                                            sx={{ marginLeft: 3.3, marginTop: 1, color: 'blue', display: 'flex' }}
+                                        >
                                             <Typography>Nested Comments</Typography>
                                             {open ? <ExpandLess /> : <ExpandMore />}
                                         </Typography>
                                     </>
-                                    : <Button color='primary' endIcon={<GetAppIcon />} variant="text" size='medium' onClick={() => main.fetchNestedComments(comment)}>
-                                        {isLoadingNested
-                                            ? <CachedIcon />
-                                            : 'Fetch nested comments'
-                                        }
+                                    : <Button color='primary'
+                                        endIcon={<GetAppIcon />}
+                                        variant="text" size='medium'
+                                        onClick={() => main.fetchNestedComments(comment)}
+                                    >
+                                        Fetch nested comments
                                     </Button>
                                 }
                             </>
                             : ''
                         }
-                        {main.isLoadingNested && main.nestedComments[comment.id]
-                            ? <>
-                                {[...Array(2)].map(() => {
-                                    return (
-                                        <div style={{ display: "flex", flexDirection: "column" }}>
-                                            <Skeleton variant='text' height={50} width={200} />
-                                            <Skeleton variant='text' height={40} width={240} />
-                                        </div>)
-                                })}
-                            </>
-                            : <Collapse in={open} timeout="auto" unmountOnExit children={nestedCommentsEl}>
-                                <List component="div" disablePadding>
-                                    {nestedCommentsEl}
-                                </List>
-                            </Collapse>
-                        }
-                        <Divider />
+                        <Collapse in={open} timeout="auto" unmountOnExit children={nestedCommentsEl}>
+                            <List component="div" disablePadding>
+                                {nestedCommentsEl}
+                            </List>
+                        </Collapse>
+                        <Divider sx={{
+                            border: 'solid grey',
+                            borderWidth: 0,
+                            borderTopWidth: 2
+                        }} />
                     </>
                 }
 
